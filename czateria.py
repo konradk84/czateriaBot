@@ -1,4 +1,4 @@
-import time
+import time, configparser
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -11,16 +11,33 @@ from selenium.webdriver.firefox.options import Options
 global oldListElements
 oldListElements = []
 
+def selectChat():
+    #TODO: menuitem
+    chat = "ZAMOSC"
+    return chat
+
+def readConfig(chat):
+    cfg = configparser.ConfigParser()
+    cfg.read('settings.ini', encoding="utf-8")
+    chat = cfg['czaty'][chat]
+    login = cfg['login']['LOGIN']
+    password = cfg['login']['PASSWORD']
+    #print("chat: ", chat, "login: ", login, "password: ", password)
+    #input("asd")
+    configParams = [chat, login, password]
+    #configParams = configParams.append(chat, login, password)
+    return configParams
+
 def setupBrowser():
     opts = Options()
     opts.set_headless()
     assert opts.headless
-    browser = webdriver.Firefox(options=opts)
-    #browser = webdriver.Firefox()
+    #browser = webdriver.Firefox(options=opts)
+    browser = webdriver.Firefox()
     return browser
 
-def joinChat(browser):
-    browser.get("https://czateria.interia.pl/emb-chat,room,") 
+def joinChat(browser, chat, login, password):
+    browser.get(chat) 
     time.sleep(1)
     rodo = browser.find_element_by_class_name("rodo-popup-agree")
     rodo.click()
@@ -28,7 +45,7 @@ def joinChat(browser):
     mamStalyNick = browser.find_element_by_xpath("//label[@for='login-user']")
     mamStalyNick.click()
     time.sleep(1)
-    browser.find_element_by_id("nick-login").send_keys(user, Keys.TAB, password) 
+    browser.find_element_by_id("nick-login").send_keys(login, Keys.TAB, password) 
     wejdz = browser.find_element_by_id("enter-login")
     wejdz.click()
     wait = WebDriverWait(browser, 10)
@@ -59,8 +76,9 @@ def compareListsElement(listElements, oldListElements):
     return returnedSet 
 
 try:
+    configParams = readConfig(selectChat())
     browser = setupBrowser()
-    joinChat(browser)
+    joinChat(browser, configParams[0], configParams[1], configParams[2])
     oldListElements = getFiveLastElements(browser)
     time.sleep(5)
     while True:
