@@ -32,8 +32,8 @@ def setupBrowser():
     opts = Options()
     opts.set_headless()
     assert opts.headless
-    #browser = webdriver.Firefox(options=opts)
-    browser = webdriver.Firefox()
+    browser = webdriver.Firefox(options=opts)
+    #browser = webdriver.Firefox()
     return browser
 
 def joinChat(browser, chat, login, password):
@@ -85,15 +85,51 @@ try:
         listElements = getFiveLastElements(browser)
         uniqueSet = compareListsElement(listElements, oldListElements)
         uniqueList = list(uniqueSet)
-        print("unique: ", uniqueList)
+        #print("unique: ", uniqueList)
         for unique in uniqueList:
+            print("MSG: ", unique)
             listNickMsg = unique.split(": ", 1)
-            print("MSG: ", listNickMsg)
+            #print("MSG: ", listNickMsg)
             if len(listNickMsg) == 2:
                 if listNickMsg[0] == 'kot32' and listNickMsg[1] == "kim jestem":
                     #print("tak")
                     #username = browser.find_element_by_id("nick-login").send_keys("zwyciezca!", Keys.Enter)
-                    browser.find_element_by_class_name("text-input").send_keys("zwyciezca!", Keys.ENTER)    
+                    browser.find_element_by_class_name("text-input").send_keys("zwyciezca!", Keys.ENTER)
+                if listNickMsg[0] == 'kot32' and listNickMsg[1] == "w!":
+                    browser.find_element_by_class_name("text-input").send_keys("papatki", Keys.ENTER)
+                    print("#### jest wyjdz ####")
+                    browser.quit()
+                if (str(listNickMsg[1]).find("hej")) != -1 or (str(listNickMsg[1]).find("hejka")) != -1 or (str(listNickMsg[1]).find("witam")) != -1 or (str(listNickMsg[1]).find("czesc")) != -1 or (str(listNickMsg[1]).find("cześć")) != -1:
+                    browser.find_element_by_class_name("text-input").send_keys("kłaniam się nisko", Keys.ENTER)
+                #if (str(listNickMsg[1]).find("Ashele xD")) != -1 or (str(listNickMsg[1]).find("kot32 xD")):
+                if unique == "kot32: xD" or unique == "Ashele: xD":
+                    browser.find_element_by_class_name("text-input").send_keys("xD", Keys.ENTER)
+                if (str(listNickMsg[1]).find("ide")) != -1:
+                    browser.find_element_by_class_name("text-input").send_keys("idź", Keys.ENTER)
+                   #print("tak")
+                    #username = browser.find_element_by_id("nick-login").send_keys("zwyciezca!", Keys.Enter)
+                    #browser.find_element_by_class_name("text-input").send_keys("zwyciezca!", Keys.ENTER)
+            if len(listNickMsg) == 1:
+                if listNickMsg[0] == "+ kot32 wszedł":
+                    browser.find_element_by_class_name("text-input").send_keys("siema kocie", Keys.ENTER)
+                if listNickMsg[0] == "+ 3piotrus3:D wszedł" or listNickMsg[0] == "+ banzaii:D wszedł":
+                    browser.find_element_by_class_name("text-input").send_keys("siema babzaj <piwo>", Keys.ENTER)
+                if listNickMsg[0] == "+ Ashele wszedł":
+                    browser.find_element_by_class_name("text-input").send_keys("Ashele szelka:*", Keys.ENTER)
+                if listNickMsg[0] == "+ Seby wszedł":
+                    browser.find_element_by_class_name("text-input").send_keys("elo sebi", Keys.ENTER)
+                if listNickMsg[0] == "+ epokalodowcowa## wszedł":
+                    browser.find_element_by_class_name("text-input").send_keys("foczysko:*", Keys.ENTER)
+                if listNickMsg[0] == "+ CuKierKoWa:-)_ wszedł":
+                    browser.find_element_by_class_name("text-input").send_keys("CuKierKoWa:-)_ no cześć maleńka:*", Keys.ENTER) 
+                
+                
+                #TODO: <u-yspie>
+                #if listNickMsg[0] == "+ yenn wszedł":
+                #    browser.find_element_by_class_name("text-input").send_keys("o jezusiku :o", Keys.ENTER)       
+                    #print("jest lamus")
+            #if bytearray(listNickMsg[0], 'utf-8').decode() == "kot32 wsze":
+            #    print("jest wszedl")
             
             #print(type(listNickMsg))
             #print("0: ", listNickMsg[0])
@@ -123,5 +159,5 @@ try:
       #          prevElements = prevElements.append(elements[intElement].text)
         #prevElements = elements
 finally:
-    input("press any key to exit")
+    #input("press any key to exit")
     browser.quit()
