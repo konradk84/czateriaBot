@@ -1,3 +1,8 @@
 *
 !czateria.py
 !.gitignore
+!command.py  
+!general.py  
+!special.py  
+!accosted.py  
+!notifications.py  

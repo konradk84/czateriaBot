@@ -8,13 +8,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys 
 from selenium.webdriver.firefox.options import Options
 
-'''
+#'''
 from notifications import notification
 from general import general
 from command import command
 from special import special
 from accosted import accosted
-'''
+#'''
 
 global oldListElements
 oldListElements = []
@@ -108,72 +108,6 @@ def killBanner(browser):
     <div class="close">Zamknij</div>
     '''
 
-def notification(browser, listNickMsg, unique):
-    try:
-        if listNickMsg[0] == "+ kot32 wszedł":
-            browser.find_element_by_class_name("text-input").send_keys("siema kocie", Keys.ENTER)
-        #if listNickMsg[0] == "+ 3piotrus3:D wszedł" or listNickMsg[0] == "+ banzaii:D wszedł":
-        #    browser.find_element_by_class_name("text-input").send_keys("siema babzaj <piwo>", Keys.ENTER)
-        if listNickMsg[0] == "+ Ashele wszedł":
-            browser.find_element_by_class_name("text-input").send_keys("Ashele szelka:*", Keys.ENTER)
-        if listNickMsg[0] == "+ Seby wszedł":
-            browser.find_element_by_class_name("text-input").send_keys("elo sebi", Keys.ENTER)
-        if listNickMsg[0] == "+ epokalodowcowa## wszedł" or listNickMsg[0] == "+ miazgaorzechowa wszedł":
-            browser.find_element_by_class_name("text-input").send_keys("foczka:*", Keys.ENTER)
-        if listNickMsg[0] == "+ CuKierKoWa:-)_ wszedł":
-            browser.find_element_by_class_name("text-input").send_keys("CuKierKoWa:-)_ no cześć maleńka:*", Keys.ENTER)
-        if listNickMsg[0] == "+ Blondyneczkaaa. wszedł":
-            browser.find_element_by_class_name("text-input").send_keys("Blondyneczkaaa. kizia mizia:*", Keys.ENTER)
-        if listNickMsg[0] == "~Zostałeś rozłączony":
-            browser.quit()
-    finally:
-        return True    
-
-def general(browser, listNickMsg, unique):
-    try:
-        if listNickMsg[0] == 'kot32' and listNickMsg[1] == "kim jestem?":
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+": jesteś zwyciężcą!", Keys.ENTER)
-        if listNickMsg[1] == "hej" or listNickMsg[1] == "hejka" or listNickMsg[1] == "witam" or listNickMsg[1] == "cześć" or listNickMsg[1] == "czesc":
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+ ": witaj :)", Keys.ENTER)
-        if (str(listNickMsg[1]).find("ide")) != -1 or (str(listNickMsg[1]).find("idę")) != -1:
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+": idź", Keys.ENTER)
-        if (str(listNickMsg[1]).find("skarbus")) != -1 or (str(listNickMsg[1]).find("skarbuś")) != -1:
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+": skarbuś... <u-rzyganie>", Keys.ENTER)
-        if (str(listNickMsg[1]).find("ssij")) != -1:
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+": zrób mi <u-lodzik2>", Keys.ENTER)
-        if (str(listNickMsg[1]).find("brak bolca")) != -1:
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+": brak stolca?:o", Keys.ENTER)     
-        if (str(listNickMsg[1]).find("brak stolca")) != -1:
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+": brak bolca?:o", Keys.ENTER)
-        if (str(listNickMsg[1]).find("prezes ciota")) != -1:
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+": no ciota, ciota <u-n06>", Keys.ENTER)
-    finally:
-        return True
-
-def accosted(browser, listNickMsg, unique):
-    try:
-        if listNickMsg[1] == "klakier_xD co słychać?":
-            browser.find_element_by_class_name("text-input").send_keys((listNickMsg[0])+ ": stare komuchy nie chcą zdychać :-/", Keys.ENTER)
-    
-    finally:
-        return True
-    
-def special(browser, listNickMsg, unique):
-    try:
-        if unique == "kot32: xD" or unique == "Ashele: xD":
-            browser.find_element_by_class_name("text-input").send_keys("xD", Keys.ENTER)
-
-    finally:
-        return True
-
-def command(browser, listElements, unique):
-    try:
-        if listNickMsg[0] == 'kot32' and listNickMsg[1] == "w!":
-            print("#### jest wyjdz ####")
-            browser.quit()
-    
-    finally:
-        return True
 
 '''def getRandomRespond(query):
     try:
